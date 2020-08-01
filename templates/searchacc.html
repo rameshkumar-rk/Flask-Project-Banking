@@ -1,0 +1,61 @@
+{% include "layout.html" %}
+<link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+<html>
+    <head>
+        <title>
+            Search Account
+        </title>
+    </head>
+    <body style="background-image: linear-gradient(to right, orange , white);" >
+        
+        <div class="container">
+
+            <div class="row">
+        
+                <div class="col-xs-5 md-12">
+
+
+       <h2 class="modal-title"> Search Account</h2>
+        <br>
+        <form method="POST">
+        <div class="form-group">
+        <label>ACCOUNT ID</label>  
+       <input class="form-control" type="text" id="aid" name="aid"/>
+        </div>
+        OR
+        <br><br>
+        <label>CUSTOMER ID</label>
+        <input class="form-control" type="text" id="cid" name="cid"/>
+        <br>
+        <button class="btn btn-primary" type="submit">View</button>
+        </form>
+
+        <br><br>
+        <table class="table table-striped">
+            <tr>
+                <th>Customer id</th>
+                <th>Acount id</th>
+                <th>Account Type</th>
+                <th>Balance</th>
+                
+            </tr>
+            
+            {% for row in data %}
+            <tr>
+                <td>{{ row.Customer_id}}</td>
+                <td>{{ row.Account_id}}</td>
+                <td>{{ row.Account_type}}</td>
+                <td>{{ row.Balance}}</td>
+                
+                
+               
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+</div>
+</div>
+</div>
+
+    </body>
+</html>

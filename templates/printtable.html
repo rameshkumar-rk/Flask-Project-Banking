@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Transcation Table</title>
+    </head>
+    <body>
+        Transactions
+        
+        
+
+        <table border="1">
+
+            <tr>
+                <th>Transaction Id</th>
+                <th>Transaction Date</th>
+                <th>Descrition</th>
+                <th>Amount</th>
+                                                       
+            </tr>
+
+        {% for row in data %}
+        <tr>
+            <td>{{ row.t_no}}</td>
+            <td>{{ row.dates}}</td>
+            <td>{{ row.operation}}</td>
+            <td>{{ row.amount}}</td>
+            
+           
+        </tr>
+        {% endfor %}
+    </table>
+    <br><br>
+
+   
+
+    </body>
+</html>

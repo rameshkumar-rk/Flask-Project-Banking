@@ -1,0 +1,53 @@
+<!doctype html>
+<head>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+{% include '_messages.html' %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+            <div class="flashes">
+            <p>{{ message }}</p>
+            </div>
+        {% endif %}
+    {% endwith %}
+
+</head>
+<div>
+    <form action="/" method="POST">
+        <button  class="btn btn-dark" type="submit">Back To Home</button>
+    </form>
+</div>
+<hr>
+<h1 align="center"><b>DELETE ACCOUNT</b></h1>
+<hr>
+
+<body style="background-image: linear-gradient(to right, orange , white);" class="ma">
+<div class="container">
+	<form class="pure-form pure-form-aligned" method="POST" action="/deleteaccount">
+        <div class="pure-control-group">
+        <div class="col-sm-10 offset-sm-4">
+       Account ID <input type="text" name="accid" id="accid" class="col-sm-3">
+            <br>
+            <br>
+        </div>
+        </div>
+        <div class="pure-control-group">
+        <div class="col-sm-10 offset-sm-4">
+        <label for="acctype">Transfer Account Type</label>
+            <select id="acctype" name="acctype" class="col-sm-2">
+                <option value="S">Savings</option>
+                <option value="C">Current</option>
+            </select>
+        </div>
+        </div>
+        <br>
+        <br>
+        <div class="pure-control-group">
+        <div class="col-sm-10 offset-sm-5">
+	<button type="submit" class="btn btn-success" value="Submit">Delete</button>
+    </div>
+        </div>
+    </form>
+</body>

@@ -1,0 +1,94 @@
+{% include "layout.html" %}
+<html>
+    <head>
+        <title>View Account Statement</title> 
+    
+    </head>
+    <script>
+        function oncheck1()
+        {
+            var r1=document.getElementById("r1");
+            var clid=document.getElementById("cldi");
+            clid.style.display=r1.checked?"block":"none";
+        }
+        function oncheck2()
+        {
+            var r2=document.getElementById("r2");
+            var cldi1=document.getElementById("cldi1");
+            cldi1.style.display=r2.checked?"block":"none";
+        }
+
+    </script>
+    <body style="background-image: linear-gradient(to right, orange , white);" >
+        <div class="container">
+
+            <div class="row">
+        
+                <div class="col-xs-5 md-12">
+
+
+        <h2 class="modal-title">View Account Statement</h2>
+        <br>
+        <form method="POST">
+            <label>Account ID</label> <input  class="form-control" type='text' id="aid" name="aid"/>
+            <br>
+
+            <label>Last Number Of Transactions</label><input type="radio" id="r1" name="r1" value="Lnt" onclick="oncheck1()"/>
+            <br>
+                      <div id="cldi" style="display:none">
+                      <label>  Number of Transactions</label>
+                      <input  class="form-control" type="number" id="notr" name="notr"/>
+                      <br>
+                      </div>
+        
+<br>
+                    <label> Start And End Date</label>
+                    <input type="radio" id="r2" name="r2" value="sten" onclick="oncheck2()"/>
+        
+            <br>
+                      <div id="cldi1" style="display:none">
+                       <label> Start Date</label>
+                        <input  class="form-control" type="date" id="sd" name="sd" />
+                      <label>  End Date</label>
+                        <input  class="form-control" type="date" id="ed" name="ed"/> 
+                        <br>                
+                      </div>
+           <br>
+        <button  class="btn btn-primary" type="submit" value="Submit">View Statement</button>
+        </form>
+
+        <br>
+       <h4>Transactions</h4>         
+        
+
+        <table class="table table-striped" >
+
+            <tr>
+                <th>Transaction Id</th>
+                <th>Transaction Date</th>
+                <th>Descrition</th>
+                <th>Amount</th>
+                                                       
+            </tr>
+
+        {% for row in data %}
+        <tr>
+            <td>{{ row.t_no}}</td>
+            <td>{{ row.dates}}</td>
+            <td>{{ row.operation}}</td>
+            <td>{{ row.amount}}</td>
+            
+           
+        </tr>
+        {% endfor %}
+    </table>
+    <br><br>
+
+   
+</div>
+</div>
+</div>
+
+
+    </body>
+</html>

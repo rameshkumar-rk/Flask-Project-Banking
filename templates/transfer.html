@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block head %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<h1 align="center">Transfer page</h1>
+<hr>
+<div>
+    <table align="center" class="pure-table pure-table-bordered" style="text-align:center" >
+        <thead>
+        <tr>
+            <th>Source Account ID</th>
+            <th>Source Account Type</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+            <td>{{bal.get('Account_id') }}</td>
+            <td>{{bal.get('Account_type') }}</td>
+            </tr>
+
+    </table>
+</div>
+
+{% endblock %}
+
+{% block body %}
+<body style="background-image: linear-gradient(to right, orange , white);">
+<hr>
+<div class="form-group">
+
+    <form action="/transfer/{{bal.get('Account_id')}}/" method="post" align="center">
+
+    <div class="form-group row">
+        <div class="col-sm-8 offset-sm-2">
+      <label> Transfer Account ID</label> <input type="text" name="t_acc_id" id="t_acc_id" class="col-sm-3">
+            <br>
+            <br>
+    </div>
+    <div class="col-sm-8 offset-sm-2" >
+        <label for="accounttype">Transfer Account Type</label>
+            <select id="accounttype" name="accounttype" class="col-sm-3">
+                <option value="S">Savings</option>
+                <option value="C">Current</option>
+            </select>
+        <br>
+        <br>
+      </div>  
+    
+         <div class="col-sm-8 offset-sm-2">
+        Transfer Amount
+            <input type="text" name="amount" id="amount" class="col-sm-3">
+            <br>
+            <br>
+    </div>
+            <div class="col-sm-9 offset-sm-2">
+                <button type="submit" class="btn btn-success">Transfer</button>
+                <br><br>
+                <a class="btn btn-dark" href="/accdet">Back to Account Details</a>
+            </div>
+    </form>
+    
+        <br>
+</div>
+
+</body>
+{% endblock %}

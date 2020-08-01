@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<body style="background-image: linear-gradient(to right, orange , white);"></body>
+<h1 align="center">Withdraw page</h1>
+<hr>
+<div>
+    <table align="center" class="pure-table pure-table-bordered" style="text-align:center" >
+        <thead>
+        <tr>
+            <th>Customer ID</th>
+            <th>Account ID</th>
+            <th>Account Type</th>
+            <th>Balance</th>
+        </tr>
+    </thead>
+     <tbody>
+        <tr>
+            <td>{{bal.get('Customer_id') }}</td>
+            <td>{{bal.get('Account_id') }}</td>
+            <td>{{bal.get('Account_type') }}</td>
+            <td>₹ {{bal.get('Balance') }}</td>
+
+            </tr>
+
+    </table>
+</div>
+
+{% endblock %}
+
+{% block body %}
+
+<hr>
+<div class="col-sm-8 offset-sm-2" class="form-group">
+    <form action="/withdraw/{{bal.get('Account_id')}}/" method="post" align="center">
+
+        Amount
+            <input type="text" name="amount" id="amount" class="col-sm-2">
+            <br>
+            <br>
+            <input class="btn btn-success" type="submit" value="Withdraw">
+        </form>
+        <br>
+        <a class="btn btn-dark" href="/accdet">Back to Account Details</a>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block title %} Login {% endblock %}
+{% block content %}
+<body style="background-image: linear-gradient(to right, orange , white);">
+<div class="container">
+ <div class="row">
+ <div class="col-md-6 col-md-offset-3">
+ <form action="/login" method="POST">
+ <div class="form-group">
+ <label style="color: black;">Email:</label>
+ <input type="email" class="form-control" name="email" required>
+ </div>
+ <div class="form-group">
+ <label style="color: black;" >Password:</label>
+ <input type="password" class="form-control" name="password" required>
+ </div>
+ <div class="form-group">
+ <button class="btn btn-primary">Login</button>
+ </div>
+ </form>
+</div>
+ </div>
+</div>
+
+</body>
+{% endblock %}

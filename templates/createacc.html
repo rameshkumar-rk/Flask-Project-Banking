@@ -1,0 +1,63 @@
+<!doctype html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+{% include '_messages.html' %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+            <div class="flashes">
+            <p>{{ message }}</p>
+            </div>
+        {% endif %}
+    {% endwith %}
+    <div>
+        <form action="/" method="POST">
+            <button  class="btn btn-dark" type="submit">Back To Home</button>
+        </form>
+    
+    </div>
+    
+<hr>
+<h1 align="center"><b>Create Account</b></h1>
+<hr>
+</head>
+
+<body style="background-image: linear-gradient(to right, orange , white);" class="ma">
+    
+<div class="container" align="center">
+	<form class="pure-form pure-form-aligned" method="POST" action="/createaccount">
+        <div class="pure-control-group">
+        <div class="col-sm-7 offset-sm-0">
+             
+       Customer ID <input type="text" name="cusid" id="cusid" class="col-sm-3">
+            <br>
+            <br>
+        </div>
+        </div>
+         <div class="pure-control-group">
+          <div class="col-sm-8 offset-sm-0">
+        <label for="acctype">Transfer Account Type</label>
+            <select id="acctype" name="acctype" class="col-sm-2">
+                <option value="S">Savings</option>
+                <option value="C">Current</option>
+            </select>
+           </div>
+        </div>
+        <br>
+        <br>
+        <div class="pure-control-group">
+        <div class="col-sm-7 offset-sm-0">
+       Deposit Amount <input type="text" name="depamt" id="depamt" class="col-sm-3">
+            <br>
+            <br>
+        </div>
+        </div>
+	<button type="submit" class="btn btn-success" value="Submit">Create</button>
+    </form>
+</div>
+</body>
+

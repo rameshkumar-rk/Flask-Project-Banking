@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Status</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<div>
+    <form action="/" method="POST">
+        <button  class="btn btn-dark" type="submit">Back To Home</button>
+    </form>
+</div>
+<h1 align="center"><b>Account Status</b></h1>
+
+</head>
+<body style="background-image: linear-gradient(to right, orange , white);">
+
+<hr>
+
+<div class="container" id="mydiv">
+    <table id="account" align="center" class="hover"  style="text-align:center" border="2px">
+        <thead>
+        <tr>
+            <th style="text-align:center">Customer ID</th>
+            <th style="text-align:center">Account ID</th>
+            <th style="text-align:center">Account Type</th>
+            <th style="text-align:center">Account Status</th>
+            <th style="text-align:center">Last Updated</th>
+            <th style="text-align:center">Message</th>
+            <!--leave operations for now-->
+            <th style="text-align:center">Operations</th>
+        </tr>
+    </thead>
+     <tbody >
+
+        {% for i in res %}
+        <div id="mem{{i.Account_id}}">
+            <tr style="background-image: linear-gradient(to right, orange , white);">
+                <td>{{i.Customer_id}}</td>
+                <td id="Account_id{{ i.Account_id}}">{{i.Account_id}}</td>
+                <td>{{i.Account_type}}</td>
+                <td>{{i.Account_status}}</td>
+                <td>{{i.Acc_ls_date}}</td>
+                {% if i.Account_status =='Pending' %}
+                    <td>N/A</td>
+                {% elif i.Customer_id in lis  %}
+                    <td>Customer already has a account of specified type</td>
+                {% else %}
+                    <td>Account creation completed</td>
+                {% endif %}
+                 <!--leave operations for now-->
+
+                <td> <button class="btn btn-primary updateButton" ids="{{i.Customer_id}}">Refresh</button></td>
+            </tr>
+            </div>
+        {% endfor %}
+
+    </table>
+     <!--leave this for now-->
+    <input type='button' name ='click me' id="refresh" value="Refresh">
+<!--leave this for now-->
+ <script>
+   $(function() {
+     $("#refresh").on("click", function() {
+        $("#mydiv").load("accountstatus.html")
+        return true;
+    })
+  })
+</script>
+     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+     <script type="text/javascript">
+        $(document).ready( function () {
+            $('#account').DataTable();
+
+
+           
+            $('.updateButton').on('click',function(){
+            var Account_id= $(this).attr('ids');
+            req = $.ajax({
+                url : '/update1',
+                type : 'POST',
+                data : { ids:ids }
+            });
+            req.done(function(data){
+                $('#mem'+ids).html(data);
+            });
+            });
+} );
+     </script>
+
+</div>
+
+</body>
+</html>

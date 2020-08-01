@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flashes" >
+            <p>{{ message }}</p>
+            </div>
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+
+{% block head %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+<div>
+    <form action="/" method="POST">
+        <button  class="btn btn-dark" type="submit">Back To Home</button>
+    </form>
+</div>
+<h1 align="center"><b>Account Details</b></h1>
+
+{% endblock %}
+
+{% block body %}
+<body style="background-image: linear-gradient(to right, orange , white);" >
+<hr>
+
+<div class="container">
+    <table id="account" align="center" class="hover"  style="text-align:center" border="2px">
+        <thead>
+        <tr>
+            <th style="text-align:center">Customer ID</th>
+            <th style="text-align:center">Account ID</th>
+            <th style="text-align:center">Account Type</th>
+            <th style="text-align:center">Balance</th>
+            <th style="text-align:center">Operations</th>
+        </tr>
+    </thead>
+     <tbody >
+
+        {% for i in res %}
+            <tr style="background-image: linear-gradient(to right, orange , white);">
+                <td>{{i.Customer_id}}</td>
+                <td>{{i.Account_id}}</td>
+                <td>{{i.Account_type}}</td>
+                <td class="contribution">₹ {{i.Balance}}</td>
+                <td><a class="btn btn-primary" href="/deposit/{{ i.Account_id }}/" >Deposit</a>
+  <a class="btn btn-primary" href="/withdraw/{{ i.Account_id }}/" >Withdraw</a>   <a class="btn btn-primary" href="/transfer/{{ i.Account_id }}/" >Transfer</a></td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+     <script type="text/javascript">
+        $(document).ready( function () {
+            $('#account').DataTable();} );
+     </script>
+
+</div>
+</body>
+{% endblock %}
+
